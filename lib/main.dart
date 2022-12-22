@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'component/search_form.dart';
+import 'components/search_form.dart';
 
 void main() => runApp(const OnboardingApp());
 
@@ -23,7 +23,3 @@ class MyHomePage extends StatelessWidget {
     );
   }
 }
-
-
-
-
