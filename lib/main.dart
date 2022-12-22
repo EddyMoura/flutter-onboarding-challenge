@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'component/search_form.dart';
 
 void main() => runApp(const OnboardingApp());
 
@@ -6,35 +7,23 @@ class OnboardingApp extends StatelessWidget {
   const OnboardingApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(home: MyHomePage());
-  }
+  Widget build(BuildContext context) => const MaterialApp(home: MyHomePage());
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Onboarding App'),
+        title: const Text("Onboarding App"),
       ),
-      body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextFormField(
-              decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Enter your login',
-              ),
-            ),
-            TextButton(onPressed: (){}, child: const Text('Press to save'))
-          ],
-        ),
-      ),
+      body: const SearchForm(),
     );
   }
 }
+
+
+
+
