@@ -1,25 +1,57 @@
 import 'package:flutter/material.dart';
-import 'components/search_form.dart';
+import 'package:flutter_onboarding_challenge/screens/home_screen.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
-void main() => runApp(const OnboardingApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initHiveForFlutter();
 
-class OnboardingApp extends StatelessWidget {
-  const OnboardingApp({Key? key}) : super(key: key);
+  final HttpLink httpLink = HttpLink(
+    'https://api.github.com/graphql',
+  );
 
-  @override
-  Widget build(BuildContext context) => const MaterialApp(home: MyHomePage());
+  final AuthLink authLink = AuthLink(
+    getToken: () => 'Bearer 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',
+  );
+
+  final Link link = authLink.concat(httpLink);
+
+  ValueNotifier<GraphQLClient> client = ValueNotifier(
+    GraphQLClient(
+      link: link,
+      cache: GraphQLCache(store: HiveStore()),
+    ),
+  );
+
+  runApp(MyApp(client: client));
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  final ValueNotifier<GraphQLClient> client;
+
+  const MyApp({Key? key, required this.client}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Onboarding App"),
+    var theme = Theme.of(context).textTheme;
+    return GraphQLProvider(
+      client: client,
+      child: CacheProvider(
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: "Github App",
+          theme: ThemeData(
+            primarySwatch: Colors.blueGrey,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            textTheme: theme,
+            appBarTheme: const AppBarTheme(
+              iconTheme: IconThemeData(color: Colors.black87),
+              toolbarTextStyle: TextStyle(),
+            ),
+          ),
+          home: const HomeScreen(),
+        ),
       ),
-      body: const SearchForm(),
     );
   }
 }
