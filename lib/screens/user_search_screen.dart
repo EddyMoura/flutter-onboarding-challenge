@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_challenge/data/queries.dart' as queries;
+import 'package:flutter_onboarding_challenge/model/user.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+
+import 'detail_user_screen.dart';
 
 class UserSearchPage extends StatefulWidget {
   const UserSearchPage({Key? key}) : super(key: key);
@@ -39,7 +42,7 @@ class _UserSearchPageState extends State<UserSearchPage> {
             padding: const EdgeInsets.all(10.0),
             child: TextButton(
               onPressed: () {
-                setState((){
+                setState(() {
                   _searchQuery = loginController.text;
                 });
               },
@@ -68,11 +71,7 @@ class _UserSearchPageState extends State<UserSearchPage> {
                 );
               }
 
-              var user = result.data?['user'];
-
-              if (user == null) {
-                return const Text('No user');
-              }
+              User user = User.fromJson(result.data?['user']);
 
               return SizedBox(
                 child: Card(
@@ -83,13 +82,21 @@ class _UserSearchPageState extends State<UserSearchPage> {
                     children: [
                       ListTile(
                         title: Text(
-                          user['name'],
+                          user.name,
                           style: const TextStyle(fontWeight: FontWeight.w500),
                         ),
-                        subtitle: Text(user['bio']),
+                        subtitle: Text(user.bio),
                         leading: CircleAvatar(
-                          backgroundImage: NetworkImage(user['avatarUrl']),
+                          backgroundImage: NetworkImage(user.avatarUrl),
                         ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailUserScreen(user: user)),
+                          );
+                        },
                       ),
                     ],
                   ),
