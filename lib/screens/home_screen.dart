@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components/user_form.dart';
+import 'search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,7 +12,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    Widget content = const SearchForm();
+    Widget content = UserSearchPage();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
