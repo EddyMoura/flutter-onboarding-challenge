@@ -11,7 +11,7 @@ void main() async {
   );
 
   final AuthLink authLink = AuthLink(
-    getToken: () => 'Bearer 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',
+    getToken: () => 'Bearer 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',
   );
 
   final Link link = authLink.concat(httpLink);
