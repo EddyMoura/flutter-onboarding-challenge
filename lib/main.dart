@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_onboarding_challenge/screens/home_screen.dart';
+import 'package:flutter_onboarding_challenge/presentation/home_screen.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 void main() async {
@@ -11,7 +11,7 @@ void main() async {
   );
 
   final AuthLink authLink = AuthLink(
-    getToken: () => 'Bearer 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',
+    getToken: () => 'Bearer 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',
   );
 
   final Link link = authLink.concat(httpLink);
@@ -55,3 +55,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+

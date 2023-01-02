@@ -3,13 +3,16 @@ class User {
   final String bio;
   final String avatarUrl;
 
-  User({required this.name, required this.bio, required this.avatarUrl});
+  User({
+      required this.name,
+      required this.bio,
+      required this.avatarUrl});
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      name: json['name'],
-      bio: json['bio'],
-      avatarUrl: json['avatarUrl'],
+        name: json['name'],
+        bio: json['bio'],
+        avatarUrl: json['avatarUrl'],
     );
   }
 
@@ -21,3 +24,4 @@ class User {
     return data;
   }
 }
+
