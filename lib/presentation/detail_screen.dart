@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../data/model/user_model.dart';
+import '../../data/model/user_model.dart';
 
 
 class DetailUserScreen extends StatelessWidget {
