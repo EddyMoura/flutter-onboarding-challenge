@@ -1,17 +1,5 @@
 class GitHubQueries {
-  String fetchUser() {
-    return """
-      query FetchUser(\$login: String!) {
-        user(login: \$login) {
-          avatarUrl
-          name
-          bio
-        }
-      }
-  """;
-  }
-
-  String fetchUserWithRepository() {
+ String fetchUser() {
     return """
     query FetchUser(\$login: String!, \$nRepositories: Int!) {
       user(login: \$login) {
@@ -30,23 +18,5 @@ class GitHubQueries {
     }
   """;
   }
-
-  String readRepositories() {
-    return """
-    query ReadRepositories(\$nRepositories: Int!) {
-      viewer {
-        repositories(last: \$nRepositories) {
-          nodes {
-            id
-            name
-            viewerHasStarred
-          }
-        }
-      }
-    }
-  """;
-  }
-
-
 }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_onboarding_challenge/presentation/search_screen.dart';
+
+import 'components/user_search_form.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,7 +12,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    Widget content = SearchScreen();
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.grey, fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
-      body: content,
+      body: const UserSearchForm(),
     );
   }
 }
